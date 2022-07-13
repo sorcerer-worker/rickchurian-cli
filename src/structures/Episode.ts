@@ -1,9 +1,13 @@
+import { CharacterManager } from "../manager/CharacterManager"
+import { getIdFromURL } from "../utils/utils"
+
 export class Episode {
 	constructor(rawData: APIEpisode) {
 		this._patch(rawData)
 	}
 
-	private EpisodeSeasonParseRegex = /^S([0-9]+)|E([0-9]+)$/gi
+	#EpisodeSeasonParseRegex = /^S([0-9]+)|E([0-9]+)$/gi
+	#CharacterRequester = new CharacterManager()
 
 	private _patch(data: APIEpisode) {
 		if ('id' in data) {
@@ -19,7 +23,8 @@ export class Episode {
 		}
 
 		if ('episode' in data) {
-			const [ss, ep] = (data.episode.match(this.EpisodeSeasonParseRegex) ?? []).map(parseInt)
+
+			const [ss, ep] = (data.episode.match(this.#EpisodeSeasonParseRegex) ?? []).map(i => parseInt(i.replace(/\D/g, '')))
 
 			this.season = ss
 			this.episode = ep
@@ -28,10 +33,23 @@ export class Episode {
 		if ('url' in data) {
 			this.url = data.url
 		}
+
+		if ('characters' in data) {
+			this.characters = data.characters.map(getIdFromURL)
+		}
 	}
 
 	get airTimestamp() {
 		return this.airDate.getTime()
+	}
+
+	get code() {
+		const [ss, ep] = [this.season, this.episode].map(i => String(i).padStart(2, '0'))
+		return `S${ss}E${ep}`
+	}
+
+	public fetchCharacters() {
+		return this.#CharacterRequester.fetch(this.characters)
 	}
 }
 
@@ -45,7 +63,7 @@ export interface Episode {
 	 */
 	name: string
 	/**
-	 * The date that this epsiode was aired on
+	 * The air date of the episode.
 	 */
 	airDate: Date
 	airTimestamp: number
@@ -59,9 +77,13 @@ export interface Episode {
 	 */
 	episode: number
 	/**
-	 * The API URL of this episode
+	 * Link to the episode's own endpoint.
 	 */
 	url: string
+	/**
+	 * List of characters who have been seen in the episode.
+	 */
+	characters: number[]
 }
 
 export interface APIEpisode {

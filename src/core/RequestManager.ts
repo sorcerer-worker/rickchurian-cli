@@ -1,17 +1,17 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { RequestMethod } from "../constants";
-export class RequestHandler {
-	constructor(options: RequestHandlerOptions = {}) {
+export class RequestManager {
+	constructor(options: RequestManagerOptions = {}) {
 		this.options = options;
 	}
 
-    private get baseURL() {
-        return this.options.baseURL ?? 'https://rickandmortyapi.com/api'
-    }
+	private get baseURL() {
+		return this.options.baseURL ?? "https://rickandmortyapi.com/api";
+	}
 
-    public get(options: Omit<InternalRequest, 'method'>) {
-        return this.request({ ...options, method: RequestMethod.Get, route: options.route })
-    }
+	public get(options: Omit<InternalRequest, "method">) {
+		return this.request({ ...options, method: RequestMethod.Get, route: options.route });
+	}
 
 	private async request(options: InternalRequest) {
 		const { method, route } = options;
@@ -21,7 +21,7 @@ export class RequestHandler {
 			baseURL: this.baseURL,
 		});
 
-		return data
+		return data;
 	}
 
 	private buildURL(route: RouteLike) {
@@ -36,10 +36,10 @@ export interface InternalRequest extends Omit<AxiosRequestConfig, "method" | "ba
 
 export type RouteLike = `/${string}`;
 
-export interface RequestHandler {
-	options: RequestHandlerOptions;
+export interface RequestManager {
+	options: RequestManagerOptions;
 }
 
-interface RequestHandlerOptions {
+interface RequestManagerOptions {
 	baseURL?: string;
 }

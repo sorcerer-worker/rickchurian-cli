@@ -1,8 +1,9 @@
 import type { RouteLike } from "../core/RequestManager";
 import { Character } from "../structures/Character";
 import { Episode } from "../structures/Episode";
+import { Location } from "../structures/Location";
 
-export const Routes: {[key: string]: ((args: any) => RouteLike)} = {
+export const Routes = {
 	character: (id: number) => `/character/${id}`,
 	characters: (ids: number[]) => `/character/${ids.join(",")}`,
 	allCharacters: () => `/character`,
@@ -14,17 +15,87 @@ export const Routes: {[key: string]: ((args: any) => RouteLike)} = {
 	episodes: (ids: number[]) => `/episode/${ids.join(",")}`,
 };
 
-export const RoutesReturnType: {[key: keyof typeof Routes]: any} = {
+export type ArrayElement<ArrayType extends readonly unknown[]> =
+	ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
+
+export type Routes = { [key in keyof typeof Routes]: RoutesFunction };
+export type RoutesFunction = (...args: any) => RouteLike;
+
+export const KnownPossibleLocationType = [
+	"Planet",
+	"Cluster",
+	"Space station",
+	"Microverse",
+	"TV",
+	"Resort",
+	"Fantasy town",
+	"Dream",
+	"Dimension",
+	"unknown",
+	"Menagerie",
+	"Game",
+	"Customs",
+	"Daycare",
+	"Dwarf planet (Celestial Dwarf)",
+	"Miniverse",
+	"Teenyverse",
+	"Box",
+	"Spacecraft",
+	"Artificially generated world",
+	"Machine",
+	"Arcade",
+	"Spa",
+	"Quadrant",
+	"Quasar",
+	"Mount",
+	"Liquid",
+	"Convention",
+	"Woods",
+	"Diegesis",
+	"Non-Diegetic Alternative Reality",
+	"Nightmare",
+	"Asteroid",
+	"Acid Plant",
+	"Reality",
+	"Death Star",
+	"Base",
+	"Elemental Rings",
+	"Human",
+	"Space",
+	"Hell",
+	"Police Department",
+	"Country",
+	"Consciousness",
+	"Memory",
+] as const;
+
+const KnownPossibleCharacterSpecies = [
+	"Human",
+	"Alien",
+	"Humanoid",
+	"unknown",
+	"Poopybutthole",
+	"Mythological Creature",
+	"Animal",
+	"Robot",
+	"Cronenberg",
+	"Disease",
+] as const;
+
+export type LocationType = ArrayElement<typeof KnownPossibleLocationType>;
+export type CharacterSpeciesType = ArrayElement<typeof KnownPossibleCharacterSpecies>;
+
+export const RoutesReturnType = {
 	character: Character,
 	characters: [Character],
 	allCharacters: [Character],
-	location: Object,
-	locations: [Object],
-	allLocations: [Object],
+	location: Location,
+	locations: [Location],
+	allLocations: [Location],
 	episode: Episode,
 	episodes: [Episode],
-	allEpisodes: [Episode]
-}
+	allEpisodes: [Episode],
+} as const;
 
 export const enum RequestMethod {
 	Delete = "delete",
