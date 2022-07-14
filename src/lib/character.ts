@@ -7,7 +7,6 @@ const manager = new CharacterManager();
 export default { execute: (program: Program) => {
     program
         .option("--char --character <name>","search for a particular character")
-        .option("-a --all", "forces all results to show from search")
         .action((options: any) => {
             manager.fetchAll({filter: {name: options.character}})
                 .then(result => {
