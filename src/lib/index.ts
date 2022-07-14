@@ -2,6 +2,7 @@ import years from "./years";
 import seasons from "./seasons";
 import character from "./character";
 import episode from "./episode";
+import location from "./location";
 
 
 export type Program = {
@@ -17,7 +18,8 @@ export const commands: Array<Command> = [
     years,
     seasons,
     character,
-    episode
+    episode,
+    location
 ];
 
 export default (program: Program) => {
