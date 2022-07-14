@@ -1,4 +1,5 @@
 import years from "./years";
+import seasons from "./seasons";
 
 
 export type Program = {
@@ -10,7 +11,7 @@ export type Command = {
     execute: ( program: Program ) => void
 }
 
-export const commands: Array<Command> = [ years ];
+export const commands: Array<Command> = [ years, seasons ];
 
 export default (program: Program) => {
     commands.forEach(command => {
