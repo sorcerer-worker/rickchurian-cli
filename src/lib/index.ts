@@ -14,10 +14,10 @@ export const commands = {
 
 export const setup = (options: any) => {
     if (options.years) {
-        years.execute(options);
+        years.execute();
     }
     else if (options.seasons) {
-        seasons.execute(options);
+        seasons.execute();
     }
     else if (options.character) {
         character.execute(options);
