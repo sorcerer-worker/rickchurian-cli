@@ -1,22 +1,17 @@
-import type { Program } from ".";
-
 import { EpisodeManager } from "../manager/EpisodeManager";
 
 const manager = new EpisodeManager();
 
-export default { execute: (program: Program) => {
-    program
-        .option("--ep --episode <name>","search for a particular episode")
-        .action((options: any) => {
-            manager.fetchAll({filter: {name: options.episode}})
-                .then(result => {
-                    result = options.all ?
-                            result :
-                            result.slice(0, 10);
-                            // original result : limit 10
-                    result
-                        .forEach( ep => {
-                            console.log(`
+export default { execute: (options?: any) => {
+    manager.fetchAll({filter: {name: options.episode}})
+        .then(result => {
+            result = options.all ?
+                    result :
+                    result.slice(0, 10);
+                    // original result : limit 10
+            result
+                .forEach( ep => {
+                    console.log(`
 ${ep.name}
 air_date: ${ep.airDate}
 episode: ${ep.episode}
@@ -24,11 +19,10 @@ characters: ${ep.characters}
 url: ${ep.url}
 created: ${ep.airTimestamp}`)
 
-                        })
                 })
-                .catch(() => {
-                    console.log("Episode not found in our archive.")
-                })
+        })
+        .catch(() => {
+            console.log("Episode not found in our archive.")
         })
     }
 }

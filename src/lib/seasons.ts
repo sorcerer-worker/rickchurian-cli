@@ -1,4 +1,3 @@
-import type { Program } from ".";
 import seasons from "../seed/seasons.json";
 
 export type Seasons = {
@@ -8,17 +7,12 @@ export type Seasons = {
 }
 
 export const seasonArr: Array<string> = Object.keys(seasons.current)
-
-export default { execute: (program: Program) => {
-    program
-        .command("seasons")
-        .description("List readable seasons relevant to the show")
-        .action(() => {
-            console.log(`${seasonArr.length} Seasons of Rick and Morty, Currently:`)
-            seasonArr
-                .forEach((seasonItem: string) => {
-                    console.log(seasonItem)
-                })
+// note: subject to update through wikipedia api for automatically checking the seasons
+export default { execute: (options?: any) => {
+    console.log(`${seasonArr.length} Seasons of Rick and Morty, Currently:`)
+    seasonArr
+        .forEach((seasonItem: string) => {
+            console.log(seasonItem)
         })
     }
 }

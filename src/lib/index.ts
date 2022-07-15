@@ -4,26 +4,28 @@ import character from "./character";
 import episode from "./episode";
 import location from "./location";
 
-
-export type Program = {
-    [key: string]: any
-}
-
-export type Command = {
-    [key: string]: any,
-    execute: ( program: Program ) => void
-}
-
-export const commands: Array<Command> = [
+export const commands = {
     years,
     seasons,
     character,
     episode,
     location
-];
+}
 
-export default (program: Program) => {
-    commands.forEach(command => {
-        command.execute(program)
-    })
+export const setup = (options: any) => {
+    if (options.years) {
+        years.execute(options);
+    }
+    else if (options.seasons) {
+        seasons.execute(options);
+    }
+    else if (options.character) {
+        character.execute(options);
+    }
+    else if (options.episode) {
+        episode.execute(options);
+    }
+    else if (options.location) {
+        location.execute(options);
+    }
 }
