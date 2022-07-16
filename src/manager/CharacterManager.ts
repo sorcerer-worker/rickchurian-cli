@@ -4,6 +4,9 @@ import { BaseFetchManyOptions, BaseManager } from "./BaseManager";
 
 export class CharacterManager extends BaseManager<Character> {
 
+	/**
+	 * Fetch one or multiple character(s).
+	 */
 	public fetch(target: number): Promise<Character>
 	public fetch(target: number[]): Promise<Character>[]
 	public fetch(target: number | number[]): Promise<Character> | Promise<Character>[] {
@@ -12,6 +15,10 @@ export class CharacterManager extends BaseManager<Character> {
 		return super._fetch({ route, params: target });
 	}
 	
+	/**
+	 * Fetch all characters.
+	 * @param options {@link CharacterFetchManyOptions}
+	 */
 	public fetchAll(options: CharacterFetchManyOptions): Promise<Character[]> {
 		return super._fetchMany({ ...options, type: Character });
 	}

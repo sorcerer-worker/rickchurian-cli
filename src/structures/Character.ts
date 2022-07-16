@@ -56,14 +56,23 @@ export class Character {
 		}
 	}
 
+	/**
+	 * Fetch the current location that this character is in.
+	 */
 	public async fetchLocation() {
 		return this.locationId ? this.#LocationRequester.fetch(this.locationId) : null;
 	}
 
+	/**
+	 * Fetch the origin location that this character comes from.
+	 */
 	public async fetchOrigin() {
 		return this.originId ? this.#LocationRequester.fetch(this.originId) : null;
 	}
 
+	/**
+	 * Fetch all episodes that this character appears on.
+	 */
 	public fetchEpisodes() {
 		return this.#EpisodeRequester.fetch(this.episodes);
 	}

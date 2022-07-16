@@ -31,6 +31,9 @@ export class Location {
 		}
 	}
 
+	/**
+	 * Fetch all characters that are currently living in this location.
+	 */
 	public fetchResidents() {
 		return this.#Requester.fetch(this.residents as number[])
 	}

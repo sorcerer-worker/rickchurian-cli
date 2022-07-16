@@ -4,6 +4,9 @@ import { BaseFetchManyOptions, BaseManager } from "./BaseManager";
 
 export class LocationManager extends BaseManager<Location> {
 
+	/**
+	 * Fetch one or multiple location(s).
+	 */
 	public fetch(target: number): Promise<Location>
 	public fetch(target: number[]): Promise<Location>[]
 	public fetch(target: number | number[]): Promise<Location> | Promise<Location>[] {
@@ -12,6 +15,10 @@ export class LocationManager extends BaseManager<Location> {
 		return super._fetch({ route, params: target });
 	}
 
+	/**
+	 * Fetch all locations.
+	 * @param options {EpisodeFetchManyOptions}
+	 */
 	public fetchAll(options: LocationFetchManyOptions): Promise<Location[]> {
 		return super._fetchMany({ ...options, type: Location });
 	}

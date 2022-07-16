@@ -43,11 +43,17 @@ export class Episode {
 		return this.airDate.getTime()
 	}
 
+	/**
+	 * Get the code of this episode (Format: `S{season}E{episode}`)
+	 */
 	get code() {
 		const [ss, ep] = [this.season, this.episode].map(i => String(i).padStart(2, '0'))
 		return `S${ss}E${ep}`
 	}
 
+	/**
+	 * Fetch all characters that appears in this episode.
+	 */
 	public fetchCharacters() {
 		return this.#CharacterRequester.fetch(this.characters)
 	}

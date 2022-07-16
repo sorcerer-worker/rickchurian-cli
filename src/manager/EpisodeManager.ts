@@ -4,6 +4,9 @@ import { BaseFetchManyOptions, BaseManager } from "./BaseManager";
 
 export class EpisodeManager extends BaseManager<Episode> {
 
+	/**
+	 * Fetch one or multiple episode(s).
+	 */
 	public fetch(target: number): Promise<Episode>
 	public fetch(target: number[]): Promise<Episode>[]
 	public fetch(target: number | number[]): Promise<Episode> | Promise<Episode>[] {
@@ -12,6 +15,10 @@ export class EpisodeManager extends BaseManager<Episode> {
 		return super._fetch({ route, params: target });
 	}
 
+	/**
+	 * Fetch all episodes.
+	 * @param options {EpisodeFetchManyOptions}
+	 */
 	public fetchAll(options: EpisodeFetchManyOptions): Promise<Episode[]> {
 		return super._fetchMany({ ...options, type: Episode });
 	}
