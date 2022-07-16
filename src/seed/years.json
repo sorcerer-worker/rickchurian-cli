@@ -1,0 +1,40 @@
+{
+    "current": {
+        "2012": {
+            "falseYear": true
+        },
+        "2013": {
+            "falseYear": false
+        },
+        "2014": {
+            "falseYear": false
+        },
+        "2015": {
+            "falseYear": false
+        },
+        "2016": {
+            "falseYear": false
+        },
+        "2017": {
+            "falseYear": false
+        },
+        "2018": {
+            "falseYear": false
+        },
+        "2019": {
+            "falseYear": false
+        },
+        "2020": {
+            "falseYear": false
+        },
+        "2021": {
+            "falseYear": false
+        },
+        "2022": {
+            "falseYear": false
+        },
+        "2023": {
+            "falseYear": true}
+    },
+    "falseYears": 2
+}
