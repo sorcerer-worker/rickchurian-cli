@@ -183,7 +183,7 @@ export class CommandManager {
 		if (!value) return { name: name, parser: undefined };
 
 		let parsedValueName = "";
-		let parser: Function = (value: any) => value;
+		let parser;
 
 		switch (type) {
 			case CommandOptionType.Integer:
