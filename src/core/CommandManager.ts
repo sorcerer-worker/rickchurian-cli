@@ -19,6 +19,9 @@ export class CommandManager {
 		this.program = program;
 	}
 
+	/**
+	 * Parse a single command to `commander`'s command.
+	 */
 	public register(cmd: CLICommand, target?: Command) {
 		const parsed = cmd.parse();
 		const data = Object.entries(parsed);
@@ -212,6 +215,11 @@ export class CommandManager {
 		}
 	}
 
+	/**
+	 * Load commands from directory. Supports recursive load for subdirectories.  
+	 * Ignore file starting with `.`. You can use this to define subcommands so it doesn't behave like a standalone command.
+	 * @param options 
+	 */
 	public async load(options: CommandLoadOptions) {
 		let { commandDir, errors = [], ...pathOptions } = options;
 
@@ -224,7 +232,8 @@ export class CommandManager {
 
 		return filePath.map((i) => {
 			const name = basename(i);
-			if (name.endsWith("d.ts")) return;
+			if (name.endsWith("d.ts") || name.startsWith('.')) return;
+
 
 			const file = require(i);
 			const command = Object.values({ ...file })[0] as Constructable<Command>;
