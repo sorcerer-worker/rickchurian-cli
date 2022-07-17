@@ -1,5 +1,5 @@
 import { Routes } from "../constants";
-import { APIEpisode, Episode } from "../structures/data/Episode";
+import { APIEpisode, Episode } from "../structures/";
 import { BaseFetchManyOptions, BaseManager } from "./BaseManager";
 
 export class EpisodeManager extends BaseManager<Episode> {

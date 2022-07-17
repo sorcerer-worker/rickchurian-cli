@@ -1,5 +1,5 @@
 import { Routes } from "../constants";
-import { APICharacter, Character } from "../structures/data/Character";
+import { APICharacter, Character } from "../structures/";
 import { BaseFetchManyOptions, BaseManager } from "./BaseManager";
 
 export class CharacterManager extends BaseManager<Character> {

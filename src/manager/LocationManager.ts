@@ -1,5 +1,5 @@
 import { Routes } from "../constants";
-import { APILocation, Location } from "../structures/data/Location";
+import { APILocation, Location } from "../structures/";
 import { BaseFetchManyOptions, BaseManager } from "./BaseManager";
 
 export class LocationManager extends BaseManager<Location> {
