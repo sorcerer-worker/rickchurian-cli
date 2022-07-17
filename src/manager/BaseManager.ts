@@ -1,9 +1,7 @@
 //@ts-nocheck
 import { Routes, RoutesReturnType } from "../constants";
 import { RequestManager } from "../core/RequestManager";
-import type { Character } from "../structures/data/Character";
-import type { Episode } from "../structures/data/Episodeisode";
-import type { Location } from "../structures/data/Location";
+import type { Episode, Location, Character } from "../structures/";
 
 export class BaseManager<APIDataType> {
 	private Requester = new RequestManager();
