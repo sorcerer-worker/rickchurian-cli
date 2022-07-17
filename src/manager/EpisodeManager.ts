@@ -1,5 +1,5 @@
 import { Routes } from "../constants";
-import { APIEpisode, Episode } from "../structures/Episode";
+import { APIEpisode, Episode } from "../structures/data/Episode";
 import { BaseFetchManyOptions, BaseManager } from "./BaseManager";
 
 export class EpisodeManager extends BaseManager<Episode> {
@@ -17,7 +17,7 @@ export class EpisodeManager extends BaseManager<Episode> {
 
 	/**
 	 * Fetch all episodes.
-	 * @param options {EpisodeFetchManyOptions}
+	 * @param options {@link EpisodeFetchManyOptions}
 	 */
 	public fetchAll(options: EpisodeFetchManyOptions): Promise<Episode[]> {
 		return super._fetchMany({ ...options, type: Episode });
