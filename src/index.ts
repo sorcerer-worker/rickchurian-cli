@@ -4,7 +4,7 @@ import { CommandManager } from "./core/CommandManager";
 const manager = new CommandManager(program);
 
 (async () => {
-	const loaded = await manager.load({
+	await manager.load({
 		commandDir: `${__filename.includes(".js") ? "dist/commands/" : "src/commands"}`,
 		errors: ["EmptyFile", "NoMatches"],
 	});
