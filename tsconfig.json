@@ -3,6 +3,7 @@
     "compilerOptions": {
       "target": "ES2020",
       "module": "commonjs",
+      "outDir": "bin",
       "importHelpers": true,
       "noEmitHelpers": true,
       "importsNotUsedAsValues": "error",
