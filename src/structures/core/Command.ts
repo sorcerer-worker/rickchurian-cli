@@ -55,8 +55,8 @@ export abstract class Command {
 }
 
 export interface ResolvedCommandOptions {
-	arguments: {[key: string]: any}
-	options: {[key: string]: any}
+	arguments: { [key: string]: any };
+	options: { [key: string]: any };
 }
 
 export interface Command {
@@ -66,7 +66,7 @@ export interface Command {
 export interface JSONCommand {
 	name: string;
 	description?: string;
-	aliases?: string[],
+	aliases?: string[];
 	arguments?: JSONCommandAgrument[];
 	options?: JSONCommandOption[];
 	/**
@@ -132,22 +132,28 @@ export interface JSONCommandOption {
 	 *
 	 */
 	type: CommandOptionType;
-	value?: {
-		/**
-		 * The name of this option value.
-		 * @example
-		 * ```
-		 * {
-		 * 	name: 'say-hello',
-		 * 	value: {
-		 * 		name: 'user'
-		 * 	}
-		 * }
-		 * ```
-		 * This returns `--say-hello <user>`
-		 */
-		name: string;
-	};
+
+	/**
+	 * Not implemented.
+	 */
+	variadicOptions?: {
+		type?: CommandOptionType
+		maxInput?: number
+		minInput?: number
+	}
+
+	/**
+	 * The name of this option value.
+	 * @example
+	 * ```
+	 * {
+	 * 	name: 'say-hello',
+	 * 	valueName: 'user'
+	 * }
+	 * ```
+	 * This returns `--say-hello <user>`
+	 */
+	valueName?: string;
 	/**
 	 * Whether this option is required
 	 */
