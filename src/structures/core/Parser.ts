@@ -142,6 +142,8 @@ export class Parser {
 			if (conflictWith.length) constructed.conflicts(conflictWith);
 			if (required) constructed.makeOptionMandatory(required);
 			if (parser) constructed.argParser(parser)
+
+			return constructed
 		});
 	}
 
