@@ -1,6 +1,6 @@
-import { EpisodeManager } from "../manager/EpisodeManager";
-import { LocationManager } from "../manager/LocationManager";
-import { getIdFromURL } from "../utils/utils";
+import { EpisodeManager } from "../../manager/EpisodeManager";
+import { LocationManager } from "../../manager/LocationManager";
+import { getIdFromURL } from "../../utils/utils";
 
 export class Character {
 	constructor(rawCharacterData: APICharacter) {

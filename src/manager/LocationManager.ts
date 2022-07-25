@@ -1,5 +1,5 @@
 import { Routes } from "../constants";
-import { APILocation, Location } from "../structures/Location";
+import { APILocation, Location } from "../structures/";
 import { BaseFetchManyOptions, BaseManager } from "./BaseManager";
 
 export class LocationManager extends BaseManager<Location> {
@@ -17,7 +17,7 @@ export class LocationManager extends BaseManager<Location> {
 
 	/**
 	 * Fetch all locations.
-	 * @param options {EpisodeFetchManyOptions}
+	 * @param options {@link EpisodeFetchManyOptions}
 	 */
 	public fetchAll(options: LocationFetchManyOptions): Promise<Location[]> {
 		return super._fetchMany({ ...options, type: Location });

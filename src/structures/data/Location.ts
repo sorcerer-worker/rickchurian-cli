@@ -1,6 +1,6 @@
-import type { LocationType } from "../constants";
-import { CharacterManager } from "../manager/CharacterManager";
-import { getIdFromURL } from "../utils/utils";
+import type { LocationType } from "../../constants";
+import { CharacterManager } from "../../manager/CharacterManager";
+import { getIdFromURL } from "../../utils/utils";
 
 export class Location {
 	constructor(rawLocationData: APILocation) {

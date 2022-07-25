@@ -1,7 +1,5 @@
 import type { RouteLike } from "../core/RequestManager";
-import { Character } from "../structures/Character";
-import { Episode } from "../structures/Episode";
-import { Location } from "../structures/Location";
+import { Character, Location, Episode } from "../structures";
 
 export const Routes = {
 	character: (id: number) => `/character/${id}`,

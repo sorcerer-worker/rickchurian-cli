@@ -1,20 +1,20 @@
-import { createCommand } from "commander";
+import { program } from "commander";
+import { CommandManager } from "./core/CommandManager";
 
-import { setup } from "./lib";
+const manager = new CommandManager(program);
 
-const program = createCommand();
+(async () => {
+	await manager.load({
+		commandDir: `${__filename.includes(".js") ? "dist/commands/" : "src/commands"}`,
+		errors: ["EmptyFile", "NoMatches"],
+	});
 
-program
-    .name('rickchurian')
-    .option("--all", "see all results from any search queries")
-    .option("--char, --character [character]","search by name or view a list of characters currently logged")
-    .option("--loc, --location [location]","search by name or view a list of locations currently logged")
-    .option("--ep, --episode [episode]","search by name or view a list of episodes currently logged")
-    .option("--seasons","see a list of all seasons currently logged")
-    .option("--years","see a list of all years R&M has existed currently logged")
+	program
+		.name("rickchurian")
+		.description(
+			"Rick and Morty inspired cli. With multiple cli commands and additional functionality being added."
+		)
+		.version("0.0.1");
 
-program.parse()
-
-const options = program.opts(); // returns options dict
-
-setup(options)  // lib/index.ts adding additional setup for commands
+	program.parse(process.argv);
+})();

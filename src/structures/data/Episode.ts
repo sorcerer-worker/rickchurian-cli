@@ -1,5 +1,5 @@
-import { CharacterManager } from "../manager/CharacterManager"
-import { getIdFromURL } from "../utils/utils"
+import { CharacterManager } from "../../manager/CharacterManager"
+import { getIdFromURL } from "../../utils/utils"
 
 export class Episode {
 	constructor(rawData: APIEpisode) {
